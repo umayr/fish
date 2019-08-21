@@ -7,6 +7,12 @@ set -x PATH $PATH $GOBIN
 set -x PATH $PATH $HOME/.cargo/bin
 set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
+# PyENV configurations
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PATH $PYENV_ROOT/bin
+# pyenv-virtualenv configurations (https://github.com/pyenv/pyenv-virtualenv)
+status --is-interactive; and source (pyenv init -|psub)
+status --is-interactive; and source (pyenv virtualenv-init -|psub)
 
 # N configurations
 set -x N_PREFIX $HOME/n
@@ -14,12 +20,18 @@ set -x PATH $PATH $N_PREFIX/bin
 
 set -x PATH $PATH /usr/local/opt/openssl/bin
 
+# Because of ads in npm post-install script
+set -x ADBLOCK true
+
 # fzf configurations
 set -x FZF_DEFAULT_OPTS '--color fg:#F8F8F2,hl:#50FA7B,hl+:#FF79C6,bg+:#282A36,info:#BD93F9,prompt:#50FA7B,spinner:#FF79C6,pointer:#FF79C6,marker:#FF79C6'
 set -x FZF_DEFAULT_COMMAND 'fd --type file'
 
 # brew installs executable in /usr/local/sbin
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+
+# pip3 binaries path
+set -x PATH $PATH $HOME/Library/Python/3.7/bin/
 
 # User Keybindings
 bind \ch "eval (history | fzf)"
