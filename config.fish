@@ -4,7 +4,9 @@ set -x GOBIN $GOPATH/bin
 set -x PATH $PATH $GOBIN
 
 # Rust configurations
-# set -x PATH $PATH $HOME/.cargo/bin
+set -x PATH $PATH $HOME/.cargo/bin
+set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
+
 
 # N configurations
 set -x N_PREFIX $HOME/n
